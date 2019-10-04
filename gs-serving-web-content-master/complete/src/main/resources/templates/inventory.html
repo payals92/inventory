@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var myObj = JSON.parse(this.responseText);
+      var txt = "<table border='1'>"
+      for (var x in myObj) {
+        txt += "<tr>";
+        txt += "<td>" + myObj[x].name + "</td>";
+        txt += "<td>" + myObj[x].quantity + "</td>";
+        txt += "<td>" + myObj[x].price + "</td>";
+        txt += "</tr>";
+      }
+
+      txt += "</table>"
+      document.getElementById("demo").innerHTML = txt;
+    }
+  };
+  xhttp.open("GET", "/moreData", true);
+  xhttp.send();
+}
+</script>
+
+<body>
+
+<h2>HTML Table</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td> <p th:text="${item.name}"/></td>
+        <td> <p th:text="${item.quantity}"/></td>
+        <td> <p th:text="${item.price}"/></td>
+    </tr>
+</table>
+<div id="demo">
+    <button type="button" onclick="loadDoc()">Get More</button>
+</div>
+</body>
+</html>
