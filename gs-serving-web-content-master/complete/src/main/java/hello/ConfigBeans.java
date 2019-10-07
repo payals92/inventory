@@ -1,16 +1,19 @@
 package hello;
 
-import dataproviders.DevicesDataProvider;
-import dataproviders.MongoDBDataProvider;
+import dataproviders.DynamoDBDataProvider;
+import dataproviders.IDBDataProvider;
+import models.Booking;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class ConfigBeans {
-    @Bean
-    public DevicesDataProvider getDevicesDataProvider()
-    {
-        return new DevicesDataProvider(new MongoDBDataProvider("inventory"));
+
+    @Bean("bookingDataProvider")
+    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public IDBDataProvider<Booking> getBookingDataProvider(){
+        return new DynamoDBDataProvider<Booking>();
     }
 }
