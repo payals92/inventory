@@ -1,6 +1,7 @@
-package hello;
+package controller;
 
 import dataproviders.DynamoDBDataProvider;
+import dataproviders.FlightsDataProvider;
 import dataproviders.IDBDataProvider;
 import models.Booking;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -15,5 +16,11 @@ public class ConfigBeans {
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public IDBDataProvider<Booking> getBookingDataProvider(){
         return new DynamoDBDataProvider<Booking>();
+    }
+
+    @Bean("flightsDataProvider")
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public FlightsDataProvider getFlightsDataProvider(){
+        return new FlightsDataProvider();
     }
 }

@@ -1,4 +1,4 @@
-package hello;
+package controller;
 
 import models.Item;
 import org.springframework.stereotype.Controller;
