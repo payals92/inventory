@@ -1,4 +1,4 @@
-package hello;
+package controller;
 
 import models.Item;
 import org.springframework.web.bind.annotation.GetMapping;
