@@ -15,7 +15,7 @@ public class DynamoDBDataProvider<T> implements IDBDataProvider<T> {
         BasicAWSCredentials credentials = new BasicAWSCredentials(
                 "AKIAW2QHP4IZEWYBKOUH",
                 "oqDEl3JhiGMADrpDefZMR9ouRkZSdDG+se+rdcY1");
-
+        // This is comment for DynamoDBDataProvider.
         AmazonDynamoDB amazonDynamoDB = AmazonDynamoDBClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
